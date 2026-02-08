@@ -15,7 +15,8 @@ While learning this, I have a lot of interesting future implementations planned 
   - `TicTacToe.java` — main game control and flow.  
   - `Player.java` — stores player name and symbol.  
   - `Board.java` — manages board state and moves.  
-- Game logic and input handling still in progress.  
+- Game logic and input handling still in progress. 
+- This project is intentionally incomplete and is being built incrementally to practice Java OOP concepts and industry-standard Git/GitHub workflows.    
 
 ## Planned Features  
 - Accept player input.  
@@ -36,5 +37,3 @@ While learning this, I have a lot of interesting future implementations planned 
 - Java  
 - VS Code  
 - Git / GitHub  
-
-
