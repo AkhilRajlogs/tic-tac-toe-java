@@ -1,4 +1,7 @@
 package tictactoe;
+
+import java.util.Scanner;
+
 public class TicTacToe {
 
     private Player player1, player2;
@@ -25,6 +28,13 @@ public class TicTacToe {
     }
 
     private Player takePlayerInput(int num){
-        return null;//To be implemented
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter PLayer " + num + "name: ");
+        String name = s.nextLine();
+        System.out.println("Enter Player "+ num + "sumbol: ");
+        char symbol = s.next().charAt(0);
+
+        Player p = new Player(name, symbol);
+        return p;
     }
 }
