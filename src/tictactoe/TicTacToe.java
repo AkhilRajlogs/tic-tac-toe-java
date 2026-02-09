@@ -15,26 +15,33 @@ public class TicTacToe {
 
 
     public void startGame() {
+        Scanner s = new Scanner(System.in);
         //Take player input
-        //Create the Board
-            //temporary setup to check Board display
-            player1 = new Player("Player 1", 'X');
-            player2 = new Player("Player 2", 'O');
+        player1 = takePlayerInput(1, s);
+        player2 = takePlayerInput(2, s);
+        
+        //check duplicate symbol
+        while(player1.getSymbol()==player2.getSymbol()){
+            System.out.println("Symbol already taken!! Please re-enter a different symbol.");
+            player2.setSymbol(s.next().charAt(0));
+            s.nextLine(); // to clean up left over and \n before next scan
+        }
 
+        //Create the Board
+            
             board = new Board(player1.getSymbol(), player2.getSymbol());
 
             board.printBoard();
         //Play the Game
     }
 
-    private Player takePlayerInput(int num){
-        Scanner s = new Scanner(System.in);
-        System.out.println("Enter PLayer " + num + "name: ");
+    private Player takePlayerInput(int num, Scanner s){
+        System.out.println("Enter Player-" + num + " name: ");
         String name = s.nextLine();
-        System.out.println("Enter Player "+ num + "sumbol: ");
+        System.out.println("Enter Player-"+ num + " symbol: ");
         char symbol = s.next().charAt(0);
+        s.nextLine(); // to clean up left over and \n before next scan
 
-        Player p = new Player(name, symbol);
-        return p;
+        return new Player(name, symbol);
     }
 }
