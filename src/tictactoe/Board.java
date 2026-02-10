@@ -34,6 +34,24 @@ public class Board {
             }
         }
     }
+
+    public boolean makeMove(int row, int col, char symbol){
+        //check OutOfBound moves
+        if(row < 0 || row >= boardSize || col <0 || col >=boardSize){
+            return false;
+        }
+
+        //check if already occupied
+        if(board[row][col] != EMPTY){ 
+            return false;
+        }
+            //Make move
+            board[row][col] = symbol;
+            count++;
+            
+            return true;
+        
+    }
     
 
 
