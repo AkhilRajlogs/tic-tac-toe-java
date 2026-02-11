@@ -54,7 +54,34 @@ public class Board {
     }
 
     public GameStatus getGameStatus(){
-        return GameStatus.IN_PROGRESS;
+        
+        //row chcek
+        for(int i = 0; i < boardSize; i++){
+            if(board[i][0] != EMPTY && board[i][0]==board[i][1] && board[i][1]==board[i][2]){
+                return board[i][0] == p1Symbol ? GameStatus.PLAYER1_WINS : GameStatus.PLAYER2_WINS;
+            }
+        }
+
+        //column check
+        for(int j = 0; j < boardSize; j++) {
+            if(board[0][j] != EMPTY && board[0][j]==board[1][j] && board[1][j]==board[2][j]){
+                return board[0][j] == p1Symbol ? GameStatus.PLAYER1_WINS : GameStatus.PLAYER2_WINS;
+            }
+        }
+
+        //diagonal check
+        if(board[1][1] != EMPTY){
+            if( (board[0][0] == board[1][1] && board[1][1] == board[2][2]) || (board[0][2]==board[1][1] && board[1][1] == board[2][0])) {
+                return board[1][1] == p1Symbol ? GameStatus.PLAYER1_WINS : GameStatus.PLAYER2_WINS;
+            }
+        }
+
+        if(count==boardSize*boardSize) {
+            return GameStatus.DRAW;
+        }else {
+            return GameStatus.IN_PROGRESS;
+        }
+        
     }
     
 
