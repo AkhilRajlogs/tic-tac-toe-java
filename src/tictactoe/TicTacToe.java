@@ -38,9 +38,19 @@ public class TicTacToe {
         while (true) {
             Player currentPlayer = player1Turn ? player1 : player2;
             System.out.print("Hi "+ currentPlayer.getName() + ", Enter row (1-3) of your move: ");
+            if (!s.hasNextInt()) {
+                System.out.println("Invalid input! Please retry.");
+                s.nextLine();
+                continue;
+            }
             int row = s.nextInt() - 1;
 
             System.out.print("Hi "+ currentPlayer.getName() + ", Enter column (1-3) of your move: ");
+            if (!s.hasNextInt()) {
+                System.out.println("Invalid input! Please retry.");
+                s.nextLine();
+                continue;
+            }
             int col = s.nextInt() - 1;
             s.nextLine();
 
