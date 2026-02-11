@@ -52,7 +52,30 @@ public class TicTacToe {
             }
 
             board.printBoard();
-            player1Turn = !player1Turn;
+
+            GameStatus status = board.getGameStatus();
+            switch (status) {
+                case PLAYER1_WINS: {
+                    System.out.println(player1.getName() + " has WON");
+                    return;
+                }
+
+                case PLAYER2_WINS: {
+                    System.out.println(player2.getName() + " has WON");
+                    return;
+                }
+
+                case DRAW: {
+                    System.out.println("It is a DRAW!!");
+                    return;
+                }
+                    
+            
+                case IN_PROGRESS:{
+                    player1Turn = !player1Turn;
+                    continue;
+                }
+            }
         }
     }
 
