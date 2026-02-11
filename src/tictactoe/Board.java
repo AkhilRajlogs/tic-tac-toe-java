@@ -52,6 +52,10 @@ public class Board {
             return true;
         
     }
+
+    public GameStatus getGameStatus(){
+        return GameStatus.IN_PROGRESS;
+    }
     
 
 
