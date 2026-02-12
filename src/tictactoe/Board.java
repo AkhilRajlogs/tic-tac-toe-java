@@ -3,12 +3,12 @@ package tictactoe;
 public class Board {
     private char board[][];
     private final int boardSize = 3; //initial board assumes a 3 X 3 game
-    private char p1Symbol, p2Symbol;
+    private char p1Symbol;
     //to count total number of cells filled:-
     private int count;
     private static final char EMPTY = ' ';
 
-    public Board(char p1Symbol, char p2Symbol){
+    public Board(char p1Symbol){
         board = new char[boardSize][boardSize];
         for(int i = 0; i < boardSize; i++){
             for(int j = 0; j < boardSize; j++){
@@ -17,7 +17,6 @@ public class Board {
         }
         //Currently the board assumes a 2 player game with fixed symbols
         this.p1Symbol = p1Symbol;
-        this.p2Symbol = p2Symbol;
     }
 
     public void printBoard(){
@@ -55,7 +54,7 @@ public class Board {
 
     public GameStatus getGameStatus(){
         
-        //row chcek
+        //row check
         for(int i = 0; i < boardSize; i++){
             if(board[i][0] != EMPTY && board[i][0]==board[i][1] && board[i][1]==board[i][2]){
                 return board[i][0] == p1Symbol ? GameStatus.PLAYER1_WINS : GameStatus.PLAYER2_WINS;
@@ -83,7 +82,9 @@ public class Board {
         }
         
     }
-    
 
+    public int getBoardSize(){
+        return this.boardSize;
+    }
 
 }
