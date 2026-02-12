@@ -28,7 +28,7 @@ public class TicTacToe {
         }
 
         //Create the Board            
-            board = new Board(player1.getSymbol(), player2.getSymbol());
+            board = new Board(player1.getSymbol());
 
             board.printBoard();
         //Play the Game
@@ -37,22 +37,10 @@ public class TicTacToe {
         //to be upgraded later
         while (true) {
             Player currentPlayer = player1Turn ? player1 : player2;
-            System.out.print("Hi "+ currentPlayer.getName() + ", Enter row (1-3) of your move: ");
-            if (!s.hasNextInt()) {
-                System.out.println("Invalid input! Please retry.");
-                s.nextLine();
-                continue;
-            }
-            int row = s.nextInt() - 1;
+            int boardSize = board.getBoardSize();
 
-            System.out.print("Hi "+ currentPlayer.getName() + ", Enter column (1-3) of your move: ");
-            if (!s.hasNextInt()) {
-                System.out.println("Invalid input! Please retry.");
-                s.nextLine();
-                continue;
-            }
-            int col = s.nextInt() - 1;
-            s.nextLine();
+            int row = readIndex(s, currentPlayer, "row", boardSize);
+            int col = readIndex(s, currentPlayer, "column", boardSize);
 
             boolean moveMade = board.makeMove(row, col, currentPlayer.getSymbol());
 
@@ -66,12 +54,12 @@ public class TicTacToe {
             GameStatus status = board.getGameStatus();
             switch (status) {
                 case PLAYER1_WINS: {
-                    System.out.println(player1.getName() + " has WON");
+                    System.out.println("Player 1: " + player1.getName() + " has WON");
                     return;
                 }
 
                 case PLAYER2_WINS: {
-                    System.out.println(player2.getName() + " has WON");
+                    System.out.println("Player 2: " + player2.getName() + " has WON");
                     return;
                 }
 
@@ -97,5 +85,28 @@ public class TicTacToe {
         s.nextLine(); // to clean up left over and \n before next scan
 
         return new Player(name, symbol);
+    }
+
+    private int readIndex (Scanner s, Player player, String prompt, int boardSize) {
+
+        System.out.println("Hi " + player.getName() + ", Please enter your " + prompt + " number:");
+        while (true) {
+            if(!s.hasNextInt()){
+                System.out.println("Invalid input! Non-Integer value. Please retry.");
+                s.nextLine();
+                continue;
+            }
+
+            int value = s.nextInt() - 1;
+
+            if(value < 0 || value >= boardSize){
+                System.out.println("Invalid input! Please enter integers from 1 to " + boardSize + ".");
+                continue;
+            }
+
+            s.nextLine();
+
+            return value;
+        }
     }
 }
